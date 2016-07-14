@@ -37,24 +37,24 @@ int main()
     );
 
     // Gegebene Werte
-    Variable<double> m("m", 20.00f, {std::make_pair<std::string, int>("kg", 1)});
-    Variable<double> d("d", 5.00f, {std::make_pair<std::string, int>("m", 1)});
-    Variable<double> l("l", 7.00f, {std::make_pair<std::string, int>("m", 1)});
-    Variable<double> w("\\omega", 1.15f, {std::make_pair<std::string, int>("s", -1)});
+    Double m("m", 20.00f, {std::make_pair<std::string, int>("kg", 1)});
+    Double d("d", 5.00f, {std::make_pair<std::string, int>("m", 1)});
+    Double l("l", 7.00f, {std::make_pair<std::string, int>("m", 1)});
+    Double w("\\omega", 1.15f, {std::make_pair<std::string, int>("s", -1)});
 
     // Gewichtskraft
-    Variable<double> g("g", 9.81f, {std::make_pair<std::string, int>("m", 1), std::make_pair<std::string, int>("s", -2)});
-    Variable<double> F_g("F_{g}");
+    Double g("g", 9.81f, {std::make_pair<std::string, int>("m", 1), std::make_pair<std::string, int>("s", -2)});
+    Double F_g("F_{g}");
     F_g = m * g;
 
     // Radialkraft
-    Variable<double> F_r("F_{r}");
-    Variable<double> r("r");
+    Double F_r("F_{r}");
+    Double r("r");
     r = d/2.0 + l;
     F_r = m * Pow(w,2) * Ref(r);
 
     // Gesamtkraft
-    Variable<double> F("F");
+    Double F("F");
     F = Ref(F_g) + Ref(F_r);
 
     // LaTeX export
