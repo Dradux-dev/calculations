@@ -11,6 +11,7 @@ namespace tsdev {
             ElementPtr<TIn> children;
 
             virtual void execute() {
+                Operator<T>::execute();
                 children->execute();
             }
 

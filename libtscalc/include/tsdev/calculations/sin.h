@@ -25,10 +25,7 @@ namespace tsdev {
             return ElementPtr<double>(new _Sin<double, TIn>(in));
         }
 
-        ElementPtr<double> Sin(double in) {
-            ElementPtr<double> eIn = Stack<double>::instance().createElement(new Element<double>(in));
-            return ElementPtr<double>(new _Sin<double, double>(eIn));
-        }
+        ElementPtr<double> Sin(double in);
     }
 }
 

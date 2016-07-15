@@ -6,20 +6,7 @@
 #include <string>
 #include <vector>
 
-#include <tsdev/calculations/variable.h>
-#include <tsdev/calculations/elementptr.h>
-#include <tsdev/calculations/exporter.h>
-#include <tsdev/calculations/value.h>
-#include <tsdev/calculations/plus.h>
-#include <tsdev/calculations/multiplicate.h>
-#include <tsdev/calculations/latex.h>
-#include <tsdev/calculations/divide.h>
-#include <tsdev/calculations/pow.h>
-#include <tsdev/calculations/reference.h>
-#include <tsdev/calculations/minus.h>
-#include <tsdev/calculations/double.h>
-#include <tsdev/calculations/sin.h>
-#include <tsdev/calculations/exportstreamer.h>
+#include <tsdev/calculations/calculations.h>
 
 using namespace tsdev::calculations;
 
@@ -59,39 +46,30 @@ int main()
     Exporter exporter(std::shared_ptr<Formatter>(new LatexFormatter()));
     std::cout << "Masse: " << std::endl;
     exporter.print(std::cout, m);
-    std::cout << "\\vspace{0.5cm}" << std::endl << std::endl;
 
     std::cout << "Durchmesser: " << std::endl;
     exporter.print(std::cout, d);
-    std::cout << "\\vspace{0.5cm}" << std::endl << std::endl;
 
     std::cout << "L\\\"ange: " << std::endl;
     exporter.print(std::cout, l);
-    std::cout << "\\vspace{0.5cm}" << std::endl << std::endl;
 
     std::cout << "Winkelgeschwindigkeit: " << std::endl;
     exporter.print(std::cout, w);
-    std::cout << "\\vspace{0.5cm}" << std::endl << std::endl;
 
     std::cout << "Erdbeschleunigungskonstante: " << std::endl;
     exporter.print(std::cout, g);
-    std::cout << "\\vspace{0.5cm}" << std::endl << std::endl;
 
     std::cout << "Gewichtskraft: " << std::endl;
     exporter.print(std::cout, F_g);
-    std::cout << "\\vspace{0.5cm}" << std::endl << std::endl;
 
     std::cout << "Radius: " << std::endl;
     exporter.print(std::cout, r);
-    std::cout << "\\vspace{0.5cm}" << std::endl << std::endl;
 
     std::cout << "Radialkraft: " << std::endl;
     exporter.print(std::cout, F_r);
-    std::cout << "\\vspace{0.5cm}" << std::endl << std::endl;
 
     std::cout << "Kraft: " << std::endl;
     exporter.print(std::cout, F);
-    std::cout << "\\vspace{0.5cm}" << std::endl << std::endl;
 
     Double alpha("\\alpha", 90, "deg");
     Double sin_alpha("\\alpha_{sin}");
@@ -99,19 +77,12 @@ int main()
 
     std::cout << "Winkel $\\alpha$: " << std::endl;
     exporter.print(std::cout, alpha);
-    std::cout << "\\vspace{0.5cm}" << std::endl << std::endl;
 
     std::cout << "Sinus $\\alpha$: " << std::endl;
     exporter.print(std::cout, sin_alpha);
-    std::cout << "\\vspace{0.5cm}" << std::endl << std::endl;
 
     std::cout << "Sinus Beispiel: " << std::endl
-              << ExportStreamer(exporter, sin_alpha)
-              << "\\vspace{0.5cm}" << std::endl << std::endl;
-
-    Unit u;
-    u.fromString("m kg / s^2");
-    std::cout << "Unit Test: " << u << std::endl;
+              << ExportStreamer(exporter, sin_alpha);
 
     return 0;
 }

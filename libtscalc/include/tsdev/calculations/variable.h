@@ -43,6 +43,29 @@ namespace tsdev {
                 this->ptr->name = name;
             }
 
+            Variable()
+                : ElementPtr<T>(Stack<T>::instance().createElement(new Value<T>(T(), {})))
+            {}
+
+            virtual void reset(const std::string& name, const T& value, const std::string& unit) {
+                this->setName(name);
+                this->ptr->setValue(value);
+                this->ptr->setUnit(Unit(unit));
+            }
+
+            virtual void setName(const std::string& name) {
+                this->name = name;
+                this->ptr->name = name;
+            }
+
+            virtual void setValue(T val) {
+                this->ptr->setValue(val);
+            }
+
+            virtual void setUnit(Unit unit) {
+                this->ptr->setUnit(unit);
+            }
+
             virtual void execute() {
                 if(this->ptr->isDirty()) {
                     this->ptr->execute();
@@ -93,6 +116,14 @@ namespace tsdev {
 
             virtual std::string getPrintCommands(int maxLevel, bool showNames, Formatter& formatter) const {
                 return this->ptr->getPrintCommands(1, maxLevel, showNames, formatter);
+            }
+
+            virtual T getValue() const {
+                return this->ptr->value.value;
+            }
+
+            virtual Unit getUnit() const {
+                return this->ptr->value.unit;
             }
         };
 

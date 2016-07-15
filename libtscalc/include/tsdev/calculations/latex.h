@@ -53,6 +53,11 @@ namespace tsdev {
 
                         ss << ")";
                         return ss.str();
+                    }),
+                    std::make_pair<std::string, Replacer>("integral", [](const std::vector<std::string>& v) {
+                        std::stringstream ss;
+                        ss << "\\int\\limits_{" << v[0] << "}^{" << v[1] << "} \\! " << v[2] << " \\, \\text{d}" << v[3];
+                        return ss.str();
                     })
                   })
             {}
@@ -70,7 +75,8 @@ namespace tsdev {
                 std::stringstream ss;
                 ss << std::endl
                    << "  \\end{split}" << std::endl
-                   << "\\end{equation}" << std::endl;
+                   << "\\end{equation}" << std::endl
+                   << "\\vspace{0.5cm}" << std::endl << std::endl;
 
                 return ss.str();
             }

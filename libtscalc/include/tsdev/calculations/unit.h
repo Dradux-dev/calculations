@@ -253,10 +253,7 @@ namespace tsdev {
             }
         };
 
-        std::ostream& operator<<(std::ostream& os, const Unit& unit) {
-            os << "[" << unit.toString() << "]";
-            return os;
-        }
+        std::ostream& operator<<(std::ostream& os, const Unit& unit);
     }
 }
 

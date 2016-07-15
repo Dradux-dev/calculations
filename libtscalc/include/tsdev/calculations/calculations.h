@@ -25,6 +25,7 @@
 #include "replacer.h"
 #include "sin.h"
 #include "stack.h"
+#include "trapz.h"
 #include "unaryoperator.h"
 #include "unit.h"
 #include "unittable.h"
