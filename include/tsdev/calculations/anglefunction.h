@@ -53,7 +53,7 @@ namespace tsdev {
                 if (param->value.unit == deg) {
                     return (param->value.value / 360) * 2 * pi;
                 }
-                else if(param->value.unit == rad) {
+                else if(param->value.unit == rad || param->value.unit.isEmpty()) {
                     return param->value.value;
                 }
 
