@@ -19,6 +19,7 @@
 #include <tsdev/calculations/minus.h>
 #include <tsdev/calculations/double.h>
 #include <tsdev/calculations/sin.h>
+#include <tsdev/calculations/exportstreamer.h>
 
 using namespace tsdev::calculations;
 
@@ -31,19 +32,16 @@ int main()
      */
 
     // [N] -> [kg m / s^2]
-    UnitTable::instance().add(
-        {std::make_pair<std::string, int>("N", 1)},
-        {std::make_pair<std::string, int>("m", 1), std::make_pair<std::string, int>("kg", 1), std::make_pair<std::string, int>("s", -2)}
-    );
+    UnitTable::instance().add("N", "m kg / s^2");
 
     // Gegebene Werte
-    Double m("m", 20.00f, {std::make_pair<std::string, int>("kg", 1)});
-    Double d("d", 5.00f, {std::make_pair<std::string, int>("m", 1)});
-    Double l("l", 7.00f, {std::make_pair<std::string, int>("m", 1)});
-    Double w("\\omega", 1.15f, {std::make_pair<std::string, int>("s", -1)});
+    Double m("m", 20.00f, "kg");
+    Double d("d", 5.00f, "m");
+    Double l("l", 7.00f, "m");
+    Double w("\\omega", 1.15f, "1 / s");
 
     // Gewichtskraft
-    Double g("g", 9.81f, {std::make_pair<std::string, int>("m", 1), std::make_pair<std::string, int>("s", -2)});
+    Double g("g", 9.81f, "m / s^2");
     Double F_g("F_{g}");
     F_g = m * g;
 
@@ -61,48 +59,59 @@ int main()
     Exporter exporter(std::shared_ptr<Formatter>(new LatexFormatter()));
     std::cout << "Masse: " << std::endl;
     exporter.print(std::cout, m);
-    std::cout << "\\vspace{0.5cm}" << std::endl;
+    std::cout << "\\vspace{0.5cm}" << std::endl << std::endl;
 
     std::cout << "Durchmesser: " << std::endl;
     exporter.print(std::cout, d);
-    std::cout << "\\vspace{0.5cm}" << std::endl;
+    std::cout << "\\vspace{0.5cm}" << std::endl << std::endl;
 
     std::cout << "L\\\"ange: " << std::endl;
     exporter.print(std::cout, l);
-    std::cout << "\\vspace{0.5cm}" << std::endl;
+    std::cout << "\\vspace{0.5cm}" << std::endl << std::endl;
 
     std::cout << "Winkelgeschwindigkeit: " << std::endl;
     exporter.print(std::cout, w);
-    std::cout << "\\vspace{0.5cm}" << std::endl;
+    std::cout << "\\vspace{0.5cm}" << std::endl << std::endl;
 
     std::cout << "Erdbeschleunigungskonstante: " << std::endl;
     exporter.print(std::cout, g);
-    std::cout << "\\vspace{0.5cm}" << std::endl;
+    std::cout << "\\vspace{0.5cm}" << std::endl << std::endl;
 
     std::cout << "Gewichtskraft: " << std::endl;
     exporter.print(std::cout, F_g);
-    std::cout << "\\vspace{0.5cm}" << std::endl;
+    std::cout << "\\vspace{0.5cm}" << std::endl << std::endl;
 
     std::cout << "Radius: " << std::endl;
     exporter.print(std::cout, r);
-    std::cout << "\\vspace{0.5cm}" << std::endl;
+    std::cout << "\\vspace{0.5cm}" << std::endl << std::endl;
 
     std::cout << "Radialkraft: " << std::endl;
     exporter.print(std::cout, F_r);
-    std::cout << "\\vspace{0.5cm}" << std::endl;
+    std::cout << "\\vspace{0.5cm}" << std::endl << std::endl;
 
     std::cout << "Kraft: " << std::endl;
     exporter.print(std::cout, F);
-    std::cout << "\\vspace{0.5cm}" << std::endl;
+    std::cout << "\\vspace{0.5cm}" << std::endl << std::endl;
 
-    Double alpha("\\alpha", 90, {std::make_pair<std::string, int>("deg", 1)});
+    Double alpha("\\alpha", 90, "deg");
     Double sin_alpha("\\alpha_{sin}");
-
-    std::cout << "Sinus Beispiel: " << std::endl;
     sin_alpha = Sin(alpha);
+
+    std::cout << "Winkel $\\alpha$: " << std::endl;
     exporter.print(std::cout, alpha);
+    std::cout << "\\vspace{0.5cm}" << std::endl << std::endl;
+
+    std::cout << "Sinus $\\alpha$: " << std::endl;
     exporter.print(std::cout, sin_alpha);
-    std::cout << "\\vspace{0.5cm}" << std::endl;
+    std::cout << "\\vspace{0.5cm}" << std::endl << std::endl;
+
+    std::cout << "Sinus Beispiel: " << std::endl
+              << ExportStreamer(exporter, sin_alpha)
+              << "\\vspace{0.5cm}" << std::endl << std::endl;
+
+    Unit u;
+    u.fromString("m kg / s^2");
+    std::cout << "Unit Test: " << u << std::endl;
 
     return 0;
 }

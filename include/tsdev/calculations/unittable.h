@@ -20,6 +20,10 @@ namespace tsdev {
                 table[from] = to;
             }
 
+            void add(const std::string& from, const std::string& to) {
+                this->add(Unit(from), Unit(to));
+            }
+
             std::pair<Unit, Unit> findBestMatch(Unit source) {
                 std::pair<Unit, Unit> dest;
                 int score = 0;

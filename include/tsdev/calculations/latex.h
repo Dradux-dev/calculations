@@ -70,7 +70,7 @@ namespace tsdev {
                 std::stringstream ss;
                 ss << std::endl
                    << "  \\end{split}" << std::endl
-                   << "\\end{equation}" << std::endl << std::endl;
+                   << "\\end{equation}" << std::endl;
 
                 return ss.str();
             }

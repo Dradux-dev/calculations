@@ -29,6 +29,10 @@ namespace tsdev {
                 : data(list)
             {}
 
+            Unit(const std::string& unitStr) {
+                this->fromString(unitStr);
+            }
+
             Unit& add(const Unit& unit) {
                 for(std::pair<const std::string, int> p : unit.data) {
                     if (data.find(p.first) == data.end()) {
@@ -161,10 +165,60 @@ namespace tsdev {
                 return ss.str();
             }
 
-            void fromString() {
+            void fromString(const std::string& unit) {
                 // m kg
                 // m kg s^-2
                 // m kg / s^2
+
+                static std::string allowUnitChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+                bool negateExponent = false;
+                std::string name = "";
+                int exponent = 1;
+                for(std::size_t i = 0; i < unit.length(); ++i) {
+                    if(unit[i] == ' ') {
+                        if (name.length() > 0) {
+                            data[name] = negateExponent ? -exponent : exponent;
+                            exponent = 1;
+                            name = "";
+                            continue;
+                        }
+                    }
+                    else if(unit[i] == '/') {
+                        negateExponent = true;
+                        continue;
+                    }
+                    else if(unit[i] == '^') {
+                        std::size_t spacePos = unit.find(' ', i);
+                        std::string exponentStr = "";
+                        bool addUnit = false;
+
+                        if(spacePos == std::string::npos) {
+                            exponentStr =  unit.substr(i+1);
+                            addUnit = true;
+                        }
+                        else {
+                            exponentStr = unit.substr(i+1, spacePos);
+                        }
+
+                        exponent = std::atoi(exponentStr.c_str());
+
+                        if(addUnit && name.length() > 0) {
+                            data[name] = negateExponent ? -exponent : exponent;
+                            exponent = 1;
+                            name = "";
+                        }
+
+                        continue;
+                    }
+
+                    if(allowUnitChars.find(unit[i]) != std::string::npos) {
+                        name += unit[i];
+                    }
+                }
+
+                if(name.length() > 0) {
+                    data[name] = negateExponent ? -exponent : exponent;
+                }
             }
 
             bool operator==(const Unit& rhs) const {

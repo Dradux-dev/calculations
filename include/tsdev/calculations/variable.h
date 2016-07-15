@@ -22,6 +22,13 @@ namespace tsdev {
                 this->ptr->name = name;
             }
 
+            Variable(const std::string& name, const T& value, const std::string& unit)
+                : ElementPtr<T>(Stack<T>::instance().createElement(new Value<T>(value, Unit(unit)))),
+                  name(name)
+            {
+                this->ptr->name = name;
+            }
+
             Variable(const std::string& name, const T& value)
                 : ElementPtr<T>(Stack<T>::instance().createElement(new Value<T>(value, {}))),
                   name(name)

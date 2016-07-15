@@ -34,7 +34,8 @@ HEADERS += \
     tsdev/calculations/unittable.h \
     tsdev/calculations/util.h \
     tsdev/calculations/value.h \
-    tsdev/calculations/variable.h
+    tsdev/calculations/variable.h \
+    tsdev/calculations/exportstreamer.h
 
 unix {
     target.path = /usr/lib
