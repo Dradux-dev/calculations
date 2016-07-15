@@ -1,5 +1,5 @@
 #ifndef tsdev_calculations_anglefunction_h
-#define tsdev_calculations_anglefunciton_h
+#define tsdev_calculations_anglefunction_h
 
 #include <initializer_list>
 #include <string>
