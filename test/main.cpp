@@ -6,19 +6,19 @@
 #include <string>
 #include <vector>
 
-#include "../lib/variable.h"
-#include "../lib/elementptr.h"
-#include "../lib/exporter.h"
-#include "../lib/value.h"
-#include "../lib/plus.h"
-#include "../lib/multiplicate.h"
-#include "../lib/latex.h"
-#include "../lib/divide.h"
-#include "../lib/pow.h"
-#include "../lib/reference.h"
-#include "../lib/minus.h"
-#include "../lib/double.h"
-#include "../lib/sin.h"
+#include <tsdev/calculations/variable.h>
+#include <tsdev/calculations/elementptr.h>
+#include <tsdev/calculations/exporter.h>
+#include <tsdev/calculations/value.h>
+#include <tsdev/calculations/plus.h>
+#include <tsdev/calculations/multiplicate.h>
+#include <tsdev/calculations/latex.h>
+#include <tsdev/calculations/divide.h>
+#include <tsdev/calculations/pow.h>
+#include <tsdev/calculations/reference.h>
+#include <tsdev/calculations/minus.h>
+#include <tsdev/calculations/double.h>
+#include <tsdev/calculations/sin.h>
 
 using namespace tsdev::calculations;
 

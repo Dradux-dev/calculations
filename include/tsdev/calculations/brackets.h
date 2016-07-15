@@ -5,6 +5,12 @@
 
 namespace tsdev {
     namespace calculations {
+        /**
+         * @todo Implement
+         * @todo Documentate
+         *
+         * @author Tarek Schwarzinger
+         */
         template <typename T, typename TIn>
         struct Brackets : public UnaryOperator<T, TIn> {
 

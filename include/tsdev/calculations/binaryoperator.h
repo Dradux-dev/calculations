@@ -171,9 +171,15 @@ namespace tsdev {
             }
 
             /**
-             * @brief getRoundbracketReplacer
-             * @param formatter
-             * @return
+             * @brief Requests the bracket replacement.
+             *
+             * Requests the replacer function for bracketing an operand from
+             * the formatter. If no replacer function exists in the formatter, a
+             * default replacer function is generated.
+             *
+             * @param formatter The output formatter.
+             *
+             * @return Returns a replacer function for formatting.
              */
             Replacer getRoundbracketReplacer(Formatter& formatter) const {
                 Replacer rep = formatter.replacer("()");

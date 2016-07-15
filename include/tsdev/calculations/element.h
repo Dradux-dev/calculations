@@ -22,10 +22,16 @@ namespace tsdev {
         template <typename T>
         struct Element {
             using Ptr = std::shared_ptr<Element<T>>;
+
+            /// Value with unit
             PhysicalValue<T> value;
+            /// Name
             std::string name;
+            /// List of unit substitutions
             std::vector<Unit> substitutions;
+            /// Dirty flag
             bool dirty;
+            /// Base level in execution tree
             mutable int baseLevel;
 
             /**

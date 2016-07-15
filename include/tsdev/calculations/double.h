@@ -5,8 +5,10 @@
 
 namespace tsdev {
     namespace calculations {
+        /**
+         * Type definition of a double variable.
+         */
         using Double = Variable<double>;
-        //typedef Variable<double> Double;
     }
 }
 
